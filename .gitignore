@@ -29,3 +29,4 @@ Thumbs.db
 # Local kubectl binary
 kubectl
 kubectl.exe
+jenkins-config-backup.xml
