@@ -3,28 +3,60 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Order Service - Build') {
             steps {
                 dir('Order-Service') {
-                    sh 'mvn clean package -DskipTests'
+                    sh './mvnw clean package -DskipTests'
                 }
             }
         }
-    }
 
-    post {
-        success {
-            echo 'Order-Service build successful'
+        stage('Product Service - Build') {
+            steps {
+                dir('product-service') {
+                    sh './mvnw clean package -DskipTests'
+                }
+            }
         }
 
-        failure {
-            echo 'Order-Service build failed'
+        stage('User Service - Build') {
+            steps {
+                dir('user-service') {
+                    sh './mvnw clean package -DskipTests'
+                }
+            }
+        }
+
+        stage('API Gateway - Build') {
+            steps {
+                dir('api-Gateway') {
+                    sh './mvnw clean package -DskipTests'
+                }
+            }
+        }
+
+        stage('Discovery Service - Build') {
+            steps {
+                dir('descovery-service') {
+                    sh './mvnw clean package -DskipTests'
+                }
+            }
+        }
+
+        stage('Config Server - Build') {
+            steps {
+                dir('config-server') {
+                    sh './mvnw clean package -DskipTests'
+                }
+            }
+        }
+
+        stage('Notification Service - Build') {
+            steps {
+                dir('notification') {
+                    sh './mvnw clean package -DskipTests'
+                }
+            }
         }
     }
 }
